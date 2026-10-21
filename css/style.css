@@ -1,0 +1,192 @@
+/* ================================================
+   Stok Dapur — Dark Mode, Flat UI
+   ================================================ */
+
+/* ── Variables ── */
+:root {
+  --bg:        #0F1923;
+  --bg-card:   #15202E;
+  --bg-input:  #1B2A3A;
+  --border:    #243040;
+  --text:      #E2E8F0;
+  --dim:       #718096;
+  --green:     #1F7A55;
+  --green-bg:  #16342A;
+  --green-t:   #34D399;
+  --red:       #C8321F;
+  --red-bg:    #3B1A15;
+  --red-t:     #F87171;
+  --yellow:    #E8A317;
+  --yellow-bg: #3D2E0F;
+  --yellow-t:  #FBBF24;
+  --radius:    8px;
+  --font-h:    'Bricolage Grotesque', sans-serif;
+  --font-b:    'IBM Plex Sans', sans-serif;
+  --font-m:    'IBM Plex Mono', monospace;
+}
+
+/* ── Reset ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);font-size:14px;color:var(--text);background:var(--bg);line-height:1.5;min-height:100vh}
+h1,h2,h3{font-family:var(--font-h);font-weight:700}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:var(--font-b)}
+input,select{font-family:var(--font-b)}
+table{border-collapse:collapse;width:100%}
+
+/* ── Login ── */
+.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+.login-box{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem 2rem;width:100%;max-width:380px;text-align:center}
+.login-title{font-size:1.8rem;color:#fff;margin-bottom:.25rem}
+.login-sub{color:var(--dim);font-size:.85rem;margin-bottom:2rem}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.5rem 1.15rem;font-size:.82rem;font-weight:600;border:1px solid transparent;border-radius:var(--radius);transition:opacity .15s}
+.btn:hover{opacity:.85}
+.btn-green{background:var(--green);color:#fff}
+.btn-red{background:var(--red);color:#fff}
+.btn-outline{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-full{width:100%}
+.btn-sm{padding:.3rem .65rem;font-size:.75rem}
+.btn-catat{background:transparent;color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:.35rem .85rem;font-size:.78rem;font-weight:500;width:100%;transition:border-color .15s}
+.btn-catat:hover{border-color:var(--dim)}
+.btn-icon{background:none;border:none;color:var(--dim);font-size:.85rem;padding:.15rem;line-height:1;transition:color .15s}
+.btn-icon:hover{color:var(--text)}
+
+/* ── Form ── */
+.field{margin-bottom:1rem;text-align:left}
+.field label{display:block;font-size:.78rem;font-weight:600;color:var(--dim);margin-bottom:.3rem}
+.field input,.field select{width:100%;padding:.5rem .7rem;font-size:.85rem;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);color:var(--text)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--green)}
+.field select option{background:var(--bg-card);color:var(--text)}
+.field-row{display:flex;gap:1rem}
+.field-row .field{flex:1}
+.input-catatan{border-color:var(--green) !important}
+.dim{font-weight:400;color:var(--dim)}
+.err{background:var(--red-bg);color:var(--red-t);border:1px solid rgba(200,50,31,.3);border-radius:var(--radius);padding:.5rem .7rem;font-size:.8rem;margin-bottom:1rem}
+
+/* ── Topbar ── */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border)}
+.topbar-title{font-size:1.15rem;color:#fff}
+.topbar-right{display:flex;align-items:center;gap:1.5rem}
+.user-tag{font-size:.78rem;color:var(--dim)}
+.user-tag a{color:var(--green-t);margin-left:.15rem}
+.user-tag a:hover{text-decoration:underline}
+
+/* ── Tabs ── */
+.tabs{display:flex;gap:2px;background:var(--bg-input);border-radius:var(--radius);padding:3px}
+.tab-btn{background:transparent;border:none;color:var(--dim);font-size:.82rem;font-weight:600;padding:.4rem 1rem;border-radius:6px;transition:background .15s,color .15s}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{background:#fff;color:var(--bg)}
+
+/* ── Layout ── */
+.layout{display:grid;grid-template-columns:1fr 280px;gap:1.75rem;padding:1.5rem 2rem 2rem;align-items:start}
+
+.content{min-width:0}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* ── Summary bar ── */
+.summary{display:flex;align-items:center;gap:1.5rem;margin-bottom:1.25rem;font-size:.88rem;color:var(--dim);font-weight:500}
+.summary .val{color:var(--text);font-weight:700}
+.summary .val-red{color:var(--red-t);font-weight:700}
+.summary .val-green{color:var(--green-t);font-weight:700}
+
+/* ── Bahan Grid ── */
+.bahan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.25rem}
+
+/* ── Bahan Card ── */
+.bahan-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;display:flex;flex-direction:column;position:relative}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.55rem}
+.card-actions{display:flex;gap:.3rem}
+.badge{display:inline-block;padding:.15rem .55rem;border-radius:999px;font-size:.68rem;font-weight:600;letter-spacing:.02em}
+.badge-green{background:var(--green-bg);color:var(--green-t)}
+.badge-red{background:var(--red-bg);color:var(--red-t)}
+.badge-yellow{background:var(--yellow-bg);color:var(--yellow-t)}
+.card-name{font-family:var(--font-h);font-size:.95rem;font-weight:600;color:#fff;margin-bottom:.25rem}
+.card-stok{display:flex;align-items:baseline;gap:.3rem;margin-bottom:.6rem}
+.card-stok .num{font-family:var(--font-h);font-size:1.6rem;font-weight:700;color:#fff}
+.card-stok .unit{font-size:.85rem;color:var(--dim)}
+.level-bar{width:100%;height:4px;background:var(--bg-input);border-radius:2px;margin-bottom:.6rem;overflow:hidden}
+.level-fill{height:100%;border-radius:2px}
+.fill-green{background:var(--green)}
+.fill-yellow{background:var(--yellow)}
+.fill-red{background:var(--red)}
+.card-meta{font-size:.75rem;color:var(--dim);margin-bottom:.75rem;line-height:1.6}
+
+/* ── Details (Tambah bahan) ── */
+.details-add{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1.25rem}
+.details-add summary{padding:.85rem 1.1rem;font-weight:600;font-size:.88rem;cursor:pointer;color:var(--text);list-style:none;display:flex;align-items:center;gap:.45rem}
+.details-add summary::before{content:'▶';font-size:.65rem;transition:transform .15s;display:inline-block}
+.details-add[open] summary::before{transform:rotate(90deg)}
+.details-add summary::-webkit-details-marker{display:none}
+.form-add{padding:0 1.1rem 1.1rem}
+
+/* ── Panel Card ── */
+.panel-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.25rem}
+.panel-title{font-size:1rem;color:#fff;margin-bottom:1rem}
+
+/* ── Toggle ── */
+.toggle-group{display:flex;gap:2px;background:var(--bg-input);border-radius:var(--radius);padding:3px;margin-bottom:1.25rem;width:fit-content}
+.toggle-btn{background:transparent;border:none;color:var(--dim);font-size:.82rem;font-weight:600;padding:.35rem 1.1rem;border-radius:6px;transition:background .15s,color .15s}
+.toggle-btn.active{background:var(--green);color:#fff}
+
+/* ── Entry (riwayat line) ── */
+.entry{display:flex;gap:.85rem;padding:.7rem 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.entry:last-child{border-bottom:none}
+.entry-border{width:3px;border-radius:2px;align-self:stretch;flex-shrink:0}
+.entry-border.b-green{background:var(--green)}
+.entry-border.b-red{background:var(--red)}
+.entry-date{font-size:.78rem;color:var(--dim);white-space:nowrap;min-width:90px}
+.entry-body{flex:1}
+.entry-main{font-size:.85rem}
+.entry-amount{font-weight:700}
+.entry-amount.a-green{color:var(--green-t)}
+.entry-amount.a-red{color:var(--red-t)}
+.entry-note{font-size:.78rem;color:var(--dim);margin-top:.15rem}
+
+/* ── Bon Belanja ── */
+.bon{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;font-family:var(--font-m);font-size:.8rem;position:sticky;top:1.5rem;color:var(--dim)}
+.bon-title{font-family:var(--font-h);font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.2rem}
+.bon-date{font-size:.75rem;margin-bottom:.65rem}
+.bon-divider{border:none;border-top:1px dashed var(--border);margin:.6rem 0}
+.bon-line{display:flex;justify-content:space-between;gap:.5rem;padding:.2rem 0;font-size:.78rem}
+.bon-line .bon-name{color:var(--text)}
+.bon-line .bon-detail{text-align:right;white-space:nowrap}
+.bon-price{color:var(--green-t)}
+.bon-total{display:flex;justify-content:space-between;font-weight:700;font-size:.85rem;padding:.2rem 0;color:var(--text)}
+.bon-total .bon-price{font-size:.85rem}
+.bon-note{font-size:.72rem;font-style:italic;color:var(--dim);margin-top:.4rem}
+.bon-empty{font-size:.8rem;color:var(--dim);padding:.5rem 0}
+
+/* ── Empty State ── */
+.empty-text{text-align:center;color:var(--dim);padding:1.5rem 0;font-size:.85rem}
+
+/* ── Reset Link ── */
+.reset-link{display:inline-block;font-size:.8rem;color:var(--dim);font-style:italic;margin-top:.25rem}
+.reset-link:hover{color:var(--green-t);text-decoration:underline}
+
+/* ── Toast ── */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:#fff;padding:.65rem 1.3rem;border-radius:var(--radius);font-size:.85rem;font-weight:500;opacity:0;transition:transform .3s,opacity .3s;z-index:200;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.t-red{background:var(--red)}
+
+/* ── Confirm Overlay ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:100}
+.confirm-box{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:360px;width:90%;text-align:center}
+.confirm-box p{margin-bottom:1.25rem;font-size:.9rem}
+.confirm-actions{display:flex;justify-content:center;gap:.75rem}
+
+/* ── Responsive ── */
+@media(max-width:1100px){.bahan-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.25rem}
+  .bon{position:static;order:-1}
+  .bahan-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:540px){
+  .topbar{flex-direction:column;align-items:flex-start;gap:.75rem;padding:1rem}
+  .layout{padding:1rem}
+  .bahan-grid{grid-template-columns:1fr}
+  .field-row{flex-direction:column;gap:0}
+}
