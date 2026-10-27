@@ -14,6 +14,7 @@ let deleteId    = null;
 // ── Helpers ──
 const $  = id => document.getElementById(id);
 const formatRp = n => 'Rp' + Number(n).toLocaleString('id-ID');
+const formatJumlah = n => Number(n).toLocaleString('id-ID', { maximumFractionDigits: 10 });
 
 function formatWaktu(iso) {
   const d = new Date(iso);
@@ -51,6 +52,17 @@ function toast(msg, type) {
   el.textContent = msg;
   el.className = 'toast' + (type === 'red' ? ' t-red' : '') + ' show';
   setTimeout(() => el.className = 'toast', 2500);
+}
+
+function setTheme(theme) {
+  const isDark = theme === 'dark';
+  document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+  localStorage.setItem('stok-dapur-theme', isDark ? 'dark' : 'light');
+
+  document.querySelectorAll('.theme-toggle').forEach(button => {
+    button.textContent = isDark ? ' Mode terang' : ' Mode gelap';
+    button.setAttribute('aria-pressed', String(isDark));
+  });
 }
 
 // ── Auth ──
@@ -142,11 +154,11 @@ function renderRak() {
         </div>
         <div class="card-name">${b.nama_bahan}</div>
         <div class="card-stok">
-          <span class="num">${b.stok}</span>
+          <span class="num">${formatJumlah(b.stok)}</span>
           <span class="unit">${b.satuan}</span>
         </div>
         <div class="level-bar"><div class="level-fill fill-${s.cls}" style="width:${pct}%"></div></div>
-        <div class="card-meta">Min ${b.min_stok} ${b.satuan}<br>${formatRp(b.harga_satuan)} per ${b.satuan}</div>
+        <div class="card-meta">Min ${formatJumlah(b.min_stok)} ${b.satuan}<br>${formatRp(b.harga_satuan)} per ${b.satuan}</div>
         <button class="btn-catat" onclick="catatStok(${b.id})">Catat stok</button>
       </div>`;
   }).join('');
@@ -169,7 +181,7 @@ function renderBon() {
       html += `
         <div class="bon-line">
           <span class="bon-name">${b.nama_bahan}</span>
-          <span class="bon-detail">${perlu} ${b.satuan} <span class="bon-price">${formatRp(biaya)}</span></span>
+          <span class="bon-detail">${formatJumlah(perlu)} ${b.satuan} <span class="bon-price">${formatRp(biaya)}</span></span>
         </div>`;
     });
     html += `<hr class="bon-divider">`;
@@ -187,9 +199,10 @@ function renderCatat() {
   const cur = sel.value;
   sel.innerHTML = '<option value="">Pilih bahan</option>';
   bahanList.forEach(b => {
-    sel.innerHTML += `<option value="${b.id}">${b.nama_bahan} (${b.stok} ${b.satuan})</option>`;
+    sel.innerHTML += `<option value="${b.id}">${b.nama_bahan} (${formatJumlah(b.stok)})</option>`;
   });
   if (cur) sel.value = cur;
+  updateCatatJumlahLabel();
 
   // Recent entries (last 10)
   const entries = [...riwayat].reverse().slice(0, 10);
@@ -225,7 +238,7 @@ function entryHTML(r) {
       <div class="entry-date">${formatWaktu(r.waktu)}</div>
       <div class="entry-body">
         <div class="entry-main">
-          <span class="entry-amount a-${color}">${sign}${r.jumlah} ${r.satuan}</span> ${r.nama_bahan}
+          <span class="entry-amount a-${color}">${sign}${formatJumlah(r.jumlah)} ${r.satuan}</span> ${r.nama_bahan}
         </div>
         ${r.catatan ? `<div class="entry-note">${r.catatan}</div>` : ''}
       </div>
@@ -236,6 +249,7 @@ function entryHTML(r) {
 function catatStok(id) {
   switchTab('catat');
   $('catat-bahan').value = id;
+  updateCatatJumlahLabel();
   $('catat-jumlah').focus();
 }
 
@@ -243,17 +257,21 @@ function catatStok(id) {
 function processCatat(e) {
   e.preventDefault();
   const id      = parseInt($('catat-bahan').value);
-  const jumlah  = parseInt($('catat-jumlah').value);
+  const jumlah  = Number($('catat-jumlah').value);
   const catatan = $('catat-catatan').value.trim();
   const errEl   = $('catat-error');
 
-  if (!id || !jumlah || jumlah < 1) return;
+  if (!id || !Number.isFinite(jumlah) || jumlah <= 0) {
+    errEl.textContent = 'Masukkan jumlah yang lebih besar dari 0.';
+    errEl.style.display = 'block';
+    return;
+  }
   const b = bahanList.find(x => x.id === id);
   if (!b) return;
 
   if (catatType === 'keluar') {
     if (jumlah > b.stok) {
-      errEl.textContent = `Gagal! Jumlah keluar (${jumlah}) melebihi stok tersedia (${b.stok} ${b.satuan}).`;
+      errEl.textContent = `Gagal! Jumlah keluar (${formatJumlah(jumlah)}) melebihi stok tersedia (${formatJumlah(b.stok)} ${b.satuan}).`;
       errEl.style.display = 'block';
       return;
     }
@@ -277,7 +295,7 @@ function processCatat(e) {
   });
 
   const verb = catatType === 'masuk' ? 'ditambahkan' : 'dikeluarkan';
-  toast(`${jumlah} ${b.satuan} ${b.nama_bahan} berhasil ${verb}`);
+  toast(`${formatJumlah(jumlah)} ${b.satuan} ${b.nama_bahan} berhasil ${verb}`);
   $('form-catat').reset();
   render();
 }
@@ -287,9 +305,14 @@ function setCatatType(type) {
   catatType = type;
   document.querySelectorAll('.toggle-btn').forEach(b =>
     b.classList.toggle('active', b.dataset.type === type));
-  $('catat-jumlah-label').textContent = 'Jumlah ' + type;
+  updateCatatJumlahLabel();
   $('btn-catat-submit').textContent   = 'Catat ' + type;
   $('catat-error').style.display = 'none';
+}
+
+function updateCatatJumlahLabel() {
+  const b = bahanList.find(item => item.id === Number($('catat-bahan').value));
+  $('catat-jumlah-label').textContent = `Jumlah ${catatType}${b ? ` (${b.satuan})` : ''}`;
 }
 
 // ── CRUD: Tambah / Ubah ──
@@ -305,8 +328,8 @@ function saveBahan(e) {
   e.preventDefault();
   const nama   = $('add-nama').value.trim();
   const satuan = $('add-satuan').value.trim();
-  const stok   = parseInt($('add-stok').value) || 0;
-  const min    = parseInt($('add-min').value) || 0;
+  const stok   = Number($('add-stok').value) || 0;
+  const min    = Number($('add-min').value) || 0;
   const harga  = parseInt($('add-harga').value) || 0;
 
   if (editingId !== null) {
@@ -367,6 +390,10 @@ function doDelete() {
 
 // ── Init ──
 document.addEventListener('DOMContentLoaded', () => {
+  setTheme(localStorage.getItem('stok-dapur-theme') === 'dark' ? 'dark' : 'light');
+  document.querySelectorAll('.theme-toggle').forEach(button => button.addEventListener('click', () => {
+    setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+  }));
 
   // Login
   $('form-login').addEventListener('submit', async e => {
@@ -395,6 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Catat form
   $('form-catat').addEventListener('submit', processCatat);
+  $('catat-bahan').addEventListener('change', updateCatatJumlahLabel);
 
   // Tambah/ubah form
   $('form-tambah').addEventListener('submit', saveBahan);
