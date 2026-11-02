@@ -5,6 +5,7 @@
 
 const express    = require('express');
 const session    = require('express-session');
+const MongoStore = require('connect-mongo');
 const cors       = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
 require('dotenv').config();
@@ -26,7 +27,7 @@ let db;
 async function koneksiDB() {
   const client = new MongoClient(MONGO_URI);
   await client.connect();
-  db = client.db(NAMA_DB);
+  db = client.db('stockdapur');
   console.log('Terhubung ke MongoDB Atlas');
 }
 
@@ -34,7 +35,7 @@ async function koneksiDB() {
 // bisa mengirim request ke backend ini. Tanpa ini, browser akan memblokir
 // semua request karena beda port dianggap beda origin oleh browser.
 // credentials true diperlukan agar cookie sesi bisa ikut dikirim bersama request.
-app.use(cors({ origin: ['http://localhost:5500', 'http://127.0.0.1:5500'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:5500', 'http://127.0.0.1:5500', 'https://ilhamrezapratama.github.io'], credentials: true }));
 
 // Middleware ini memungkinkan server membaca isi body dari request yang dikirim
 // dalam format JSON. Tanpa ini, req.body akan selalu kosong atau undefined.
@@ -50,7 +51,8 @@ app.use(session({
   secret: 'stockdapur-sesi',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false, httpOnly: true, maxAge: 8 * 60 * 60 * 1000 }
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI, dbName: 'stockdapur' }),
+  cookie: { secure: true, httpOnly: true, sameSite: 'none', maxAge: 8 * 60 * 60 * 1000 }
 }));
 
 // FITUR: Middleware penjaga route
