@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "bahan": [
+    { "id": 1, "nama_bahan": "Ayam", "stok": 2, "satuan": "kg", "min_stok": 5, "harga_satuan": 38000 },
+    { "id": 2, "nama_bahan": "Beras", "stok": 25, "satuan": "kg", "min_stok": 10, "harga_satuan": 14000 },
+    { "id": 3, "nama_bahan": "Minyak Goreng", "stok": 3, "satuan": "liter", "min_stok": 5, "harga_satuan": 18000 },
+    { "id": 4, "nama_bahan": "Bawang Merah", "stok": 1, "satuan": "kg", "min_stok": 3, "harga_satuan": 35000 },
+    { "id": 5, "nama_bahan": "Bawang Putih", "stok": 2, "satuan": "kg", "min_stok": 3, "harga_satuan": 32000 },
+    { "id": 6, "nama_bahan": "Cabai Merah", "stok": 4, "satuan": "kg", "min_stok": 2, "harga_satuan": 45000 },
+    { "id": 7, "nama_bahan": "Gula Pasir", "stok": 8, "satuan": "kg", "min_stok": 5, "harga_satuan": 16000 },
+    { "id": 8, "nama_bahan": "Garam", "stok": 3, "satuan": "kg", "min_stok": 2, "harga_satuan": 8000 },
+    { "id": 9, "nama_bahan": "Tepung Terigu", "stok": 1, "satuan": "kg", "min_stok": 5, "harga_satuan": 12000 },
+    { "id": 10, "nama_bahan": "Telur", "stok": 10, "satuan": "kg", "min_stok": 5, "harga_satuan": 28000 }
+  ]
+}
