@@ -4,7 +4,7 @@
 // Tujuan memisahkannya ke file sendiri adalah agar kalau suatu saat alamat backend berubah,
 // kita cukup mengubah satu baris di file ini, tidak perlu mencari di seluruh kode.
 
-const BASE = 'http://localhost:3001/api';
+const BASE = 'https://stock-dapur.vercel.app/api';
 
 // Fungsi pembantu untuk membuat opsi request fetch secara seragam.
 // Setiap request ke backend harus menyertakan header JSON dan kredensial berupa cookie sesi
