@@ -3,19 +3,16 @@
 // Di sini semua pengaturan server Express dibuat, mulai dari koneksi database,
 // middleware yang dipakai, sampai semua endpoint API yang bisa diakses frontend.
 
-const express    = require('express');
-const session    = require('express-session');
-const MongoStore = require('connect-mongo');
+const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
 require('dotenv').config();
 
-const app      = express();
-const PORT     = process.env.PORT || 3001;
+const app       = express();
+const PORT      = process.env.PORT || 3001;
 const MONGO_URI = process.env.MONGO_URI;
 
 // Koneksi MongoDB disimpan di variabel global agar tidak dibuat ulang setiap request.
-// Di Vercel serverless, setiap fungsi bisa dipakai ulang di request berikutnya
-// sehingga koneksi yang sudah ada tidak perlu dibuka lagi dari awal.
+// Di Vercel serverless, koneksi yang sudah ada bisa dipakai ulang di request berikutnya.
 let cachedDb = null;
 
 async function getDB() {
@@ -27,63 +24,66 @@ async function getDB() {
 }
 
 // CORS manual agar preflight OPTIONS selalu dibalas 200
-// tanpa harus masuk ke middleware lain terlebih dahulu.
-// GitHub Pages butuh ini agar bisa kirim request ke Vercel.
+// dan header akses diberikan ke GitHub Pages.
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://ilhamrezapratama.github.io');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
   if (req.method === 'OPTIONS') return res.sendStatus(200);
   next();
 });
 
 app.use(express.json());
 
-// Sesi disimpan ke MongoDB agar tidak hilang saat Vercel menjalankan ulang fungsi.
-// Tanpa ini login akan selalu gagal di environment serverless.
-app.use(session({
-  secret: 'stockdapur-sesi',
-  resave: false,
-  saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: MONGO_URI, dbName: 'stockdapur' }),
-  cookie: { secure: true, httpOnly: true, sameSite: 'none', maxAge: 8 * 60 * 60 * 1000 }
-}));
-
-// Middleware ini memastikan koneksi ke database sudah tersedia
-// sebelum setiap request diproses oleh route handler.
-app.use(async (req, res, next) => {
-  try {
-    await getDB();
-    next();
-  } catch (err) {
-    res.status(500).json({ ok: false, pesan: 'Gagal koneksi database.' });
+// FITUR: Middleware penjaga route
+// Membaca token dari header Authorization yang dikirim frontend.
+// Token adalah base64 dari username dan password yang disimpan di localStorage.
+// Setiap request yang butuh login akan dicek ke database terlebih dahulu.
+async function harusLogin(req, res, next) {
+  const auth = req.headers.authorization;
+  if (!auth || !auth.startsWith('Basic ')) {
+    return res.status(401).json({ ok: false, pesan: 'Belum login.' });
   }
-});
-
-function harusLogin(req, res, next) {
-  if (!req.session.pengguna) return res.status(401).json({ ok: false, pesan: 'Belum login.' });
-  next();
+  try {
+    const decoded  = Buffer.from(auth.slice(6), 'base64').toString();
+    const idx      = decoded.indexOf(':');
+    const username = decoded.substring(0, idx);
+    const password = decoded.substring(idx + 1);
+    const db       = await getDB();
+    const user     = await db.collection('users').findOne({ username, password });
+    if (!user) return res.status(401).json({ ok: false, pesan: 'Belum login.' });
+    req.pengguna = { id: user._id, username: user.username, nama: user.nama, role: user.role };
+    next();
+  } catch (e) {
+    return res.status(401).json({ ok: false, pesan: 'Belum login.' });
+  }
 }
 
 // FITUR: Login pengguna
+// Menerima username dan password dari form login.
+// Kalau cocok dengan database, mengembalikan token berupa base64 username dan password
+// yang kemudian disimpan di localStorage di browser dan dikirim di setiap request berikutnya.
 app.post('/api/auth/masuk', async (req, res) => {
   const db = await getDB();
   const { username, katasandi } = req.body;
   const user = await db.collection('users').findOne({ username, password: katasandi });
   if (!user) return res.status(401).json({ ok: false, pesan: 'Username atau password salah.' });
-  req.session.pengguna = { id: user._id, username: user.username, nama: user.nama, role: user.role };
-  res.json({ ok: true, pengguna: req.session.pengguna });
+  const token = Buffer.from(username + ':' + katasandi).toString('base64');
+  res.json({ ok: true, token, pengguna: { id: user._id, username: user.username, nama: user.nama, role: user.role } });
 });
 
 // FITUR: Logout pengguna
+// Tidak ada sesi yang perlu dihapus di server karena auth bersifat stateless.
+// Token dihapus dari localStorage di sisi frontend.
 app.post('/api/auth/keluar', (req, res) => {
-  req.session.destroy(() => res.json({ ok: true }));
+  res.json({ ok: true });
 });
 
-// FITUR: Cek sesi yang sedang aktif
+// FITUR: Cek token yang masih aktif
+// Dipakai saat halaman dibuka untuk mengecek apakah token di localStorage masih valid.
 app.get('/api/auth/saya', harusLogin, (req, res) => {
-  res.json({ ok: true, pengguna: req.session.pengguna });
+  res.json({ ok: true, pengguna: req.pengguna });
 });
 
 // FITUR: Ambil semua bahan
@@ -95,7 +95,7 @@ app.get('/api/stok', harusLogin, async (req, res) => {
 
 // FITUR: Tambah bahan baru
 app.post('/api/stok', harusLogin, async (req, res) => {
-  const db = await getDB();
+  const db  = await getDB();
   const baru = {
     nama_bahan:   req.body.namaBahan,
     stok:         Number(req.body.stok) || 0,
@@ -145,13 +145,13 @@ app.post('/api/stok/:id/catat', harusLogin, async (req, res) => {
       waktu: new Date().toISOString(), tipe,
       namaBahan: bahan.nama_bahan, jumlah: Number(jumlah),
       satuan: bahan.satuan, stokSetelah: stokBaru,
-      oleh: req.session.pengguna.nama, catatan: catatan || ''
+      oleh: req.pengguna.nama, catatan: catatan || ''
     }
   });
 });
 
 // Ekspor app untuk Vercel serverless.
-// Untuk lokal, server tetap bisa dijalankan dengan node server.js.
+// Untuk lokal, jalankan dengan node server.js seperti biasa.
 if (require.main === module) {
   app.listen(PORT, () => console.log('Server berjalan di http://localhost:' + PORT));
 }
