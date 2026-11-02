@@ -35,7 +35,14 @@ async function koneksiDB() {
 // bisa mengirim request ke backend ini. Tanpa ini, browser akan memblokir
 // semua request karena beda port dianggap beda origin oleh browser.
 // credentials true diperlukan agar cookie sesi bisa ikut dikirim bersama request.
-app.use(cors({ origin: ['http://localhost:5500', 'http://127.0.0.1:5500', 'https://ilhamrezapratama.github.io'], credentials: true }));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://ilhamrezapratama.github.io');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.sendStatus(200);
+  next();
+});
 
 // Middleware ini memungkinkan server membaca isi body dari request yang dikirim
 // dalam format JSON. Tanpa ini, req.body akan selalu kosong atau undefined.
