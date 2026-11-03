@@ -59,8 +59,18 @@ async function tampilkanApp(pengguna) {
   penggunaAktif = pengguna;
   el('login-page').style.display = 'none';
   el('app').style.display = '';
-  el('user-tag').innerHTML = `<i data-lucide="user-circle"></i> ${pengguna.nama} · <a href="#" id="btn-logout"><i data-lucide="log-out"></i> Keluar</a>`;
+  el('user-tag').innerHTML = `<i data-lucide="user-circle"></i> ${pengguna.nama}`;
   lucide.createIcons();
+  
+  // Buat tombol logout terpisah sebagai icon button
+  const logoutBtn = document.createElement('button');
+  logoutBtn.className = 'btn-logout-icon';
+  logoutBtn.innerHTML = '<i data-lucide="log-out"></i>';
+  logoutBtn.title = 'Keluar';
+  el('user-tag').parentElement.insertBefore(logoutBtn, el('user-tag').nextSibling);
+  lucide.createIcons();
+  
+  logoutBtn.addEventListener('click', e => { e.preventDefault(); prosesLogout(); });
   el('btn-logout').addEventListener('click', e => { e.preventDefault(); prosesLogout(); });
   const data = await getBahanApi();
   if (data.ok) daftarBahan = data.bahan;
