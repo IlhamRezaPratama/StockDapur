@@ -8,22 +8,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="frontend/css/style.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
-  <!-- Halaman login ditampilkan pertama kali saat pengguna membuka aplikasi.
-       Setelah login berhasil halaman ini disembunyikan dan diganti dengan halaman app. -->
   <div id="login-page" class="login-page">
     <div class="login-box">
+      <div class="login-logo"><i data-lucide="chef-hat"></i></div>
       <h1 class="login-title">Stok Dapur</h1>
       <p class="login-sub">Masuk untuk mengelola stok bahan baku</p>
 
-      <!-- Tombol ganti tema di halaman login agar pengguna bisa ganti tema sebelum masuk -->
       <div class="login-theme-row">
-        <button type="button" class="theme-toggle" aria-pressed="false"> Mode gelap</button>
+        <button type="button" class="theme-toggle" aria-pressed="false"><i data-lucide="moon"></i> Mode gelap</button>
       </div>
 
-      <!-- Form login dengan dua field yaitu username dan password -->
       <form id="form-login" autocomplete="off">
         <div class="field">
           <label for="login-user">Username</label>
@@ -34,32 +32,23 @@
           <input type="password" id="login-pass" placeholder="Masukkan password" required>
         </div>
 
-        <!-- Kotak pesan error login, disembunyikan secara default dan muncul kalau login gagal -->
         <div id="login-error" class="err" style="display:none"></div>
 
-        <button type="submit" class="btn btn-green btn-full">Masuk</button>
+        <button type="submit" class="btn btn-green btn-full"><i data-lucide="log-in"></i> Masuk</button>
       </form>
     </div>
   </div>
 
-  <!-- Halaman utama aplikasi, disembunyikan saat pertama kali dibuka.
-       Akan ditampilkan oleh JavaScript setelah proses login berhasil. -->
   <div id="app" style="display:none">
 
-    <!-- Bar navigasi atas berisi judul aplikasi, nama pengguna yang login,
-         tombol ganti tema, dan tombol tab untuk berpindah halaman -->
     <header class="topbar">
-      <h1 class="topbar-title">Stok dapur</h1>
+      <h1 class="topbar-title"><i data-lucide="chef-hat"></i> Stok dapur</h1>
       <div class="topbar-right">
 
-        <!-- Tag pengguna diisi oleh JavaScript setelah login berhasil,
-             berisi nama pengguna dan link untuk keluar dari aplikasi -->
         <span class="user-tag" id="user-tag"></span>
 
-        <!-- Tombol untuk mengganti antara tema terang dan gelap -->
         <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false"> Mode gelap</button>
 
-        <!-- Navigasi tab untuk berpindah antara tiga halaman utama yaitu Rak, Catat, dan Jurnal -->
         <nav class="tabs" id="nav-tabs">
           <button class="tab-btn active" data-tab="rak">Rak</button>
           <button class="tab-btn" data-tab="catat">Catat</button>
@@ -69,26 +58,17 @@
       </div>
     </header>
 
-    <!-- Layout dua kolom: konten utama di sebelah kiri dan bon belanja di sebelah kanan -->
     <div class="layout">
       <div class="content">
 
-        <!-- Tab Rak: menampilkan ringkasan stok dan kartu setiap bahan.
-             Ini adalah tab yang aktif pertama kali saat pengguna masuk. -->
         <section id="tab-rak" class="tab-panel active">
 
-          <!-- Ringkasan jumlah bahan, jumlah yang menipis, dan total nilai stok.
-               Diisi secara otomatis oleh JavaScript setiap kali data berubah. -->
           <div class="summary" id="summary-bar"></div>
 
-          <!-- Grid kartu bahan, diisi secara otomatis oleh JavaScript.
-               Setiap kartu menampilkan nama, jumlah stok, status, dan tombol aksi. -->
           <div class="bahan-grid" id="bahan-grid"></div>
 
-          <!-- Form tambah bahan baru yang bisa dibuka dan ditutup dengan klik.
-               Saat sedang mode edit bahan, form ini juga dipakai untuk mengubah data. -->
           <details class="details-add" id="details-add">
-            <summary>Tambah bahan baru</summary>
+            <summary><i data-lucide="plus-circle"></i> Tambah bahan baru</summary>
             <form id="form-tambah" class="form-add" autocomplete="off">
               <div class="field-row">
                 <div class="field">
@@ -102,8 +82,6 @@
               </div>
               <div class="field-row">
                 <div class="field">
-                  <!-- Field stok awal hanya aktif saat tambah bahan baru.
-                       Saat mode edit field ini dinonaktifkan karena stok hanya bisa diubah lewat catat transaksi. -->
                   <label>Stok awal</label>
                   <input type="number" id="add-stok" min="0" step="any" value="0" required>
                 </div>
@@ -117,25 +95,19 @@
                 <input type="number" id="add-harga" min="0" value="0" required>
               </div>
 
-              <!-- Field tersembunyi untuk menyimpan ID bahan yang sedang diedit.
-                   Kosong saat mode tambah baru dan terisi saat mode edit. -->
               <input type="hidden" id="add-id" value="">
 
-              <button type="submit" class="btn btn-green" id="btn-simpan-bahan">Simpan bahan</button>
+              <button type="submit" class="btn btn-green" id="btn-simpan-bahan"><i data-lucide="save"></i> Simpan bahan</button>
             </form>
           </details>
 
-          <!-- Tautan untuk mereset seluruh data bahan ke data contoh awal -->
           <a href="#" class="reset-link" id="reset-rak">Reset data contoh</a>
         </section>
 
-        <!-- Tab Catat: form untuk mencatat transaksi stok masuk atau keluar,
-             dan menampilkan daftar singkat 10 transaksi yang terakhir dicatat. -->
         <section id="tab-catat" class="tab-panel">
           <div class="panel-card">
             <h2 class="panel-title">Catat bahan</h2>
 
-            <!-- Toggle untuk memilih apakah transaksi ini stok masuk atau keluar -->
             <div class="toggle-group" id="catat-toggle">
               <button class="toggle-btn active" data-type="masuk">Masuk</button>
               <button class="toggle-btn" data-type="keluar">Keluar</button>
@@ -143,7 +115,6 @@
 
             <form id="form-catat" autocomplete="off">
 
-              <!-- Dropdown pilihan bahan, diisi otomatis oleh JavaScript dari daftar bahan yang ada -->
               <div class="field">
                 <label for="catat-bahan">Bahan</label>
                 <select id="catat-bahan" required>
@@ -151,26 +122,22 @@
                 </select>
               </div>
 
-              <!-- Field jumlah, labelnya berubah otomatis sesuai satuan bahan yang dipilih -->
               <div class="field">
                 <label id="catat-jumlah-label" for="catat-jumlah">Jumlah masuk</label>
                 <input type="number" id="catat-jumlah" min="0" step="any" placeholder="0" required>
               </div>
 
-              <!-- Field catatan bersifat opsional, bisa diisi keterangan seperti asal pembelian -->
               <div class="field">
                 <label>Catatan <span class="dim">opsional</span></label>
                 <input type="text" id="catat-catatan" class="input-catatan" placeholder="Contoh: beli dari pasar">
               </div>
 
-              <!-- Kotak pesan error catat, muncul jika jumlah tidak valid atau stok tidak cukup -->
               <div id="catat-error" class="err" style="display:none"></div>
 
-              <button type="submit" class="btn btn-green" id="btn-catat-submit">Catat masuk</button>
+              <button type="submit" class="btn btn-green" id="btn-catat-submit"><i data-lucide="check-circle"></i> Catat masuk</button>
             </form>
           </div>
 
-          <!-- Daftar 10 transaksi terakhir yang dicatat, diperbarui otomatis setiap ada transaksi baru -->
           <div class="panel-card">
             <h3 class="panel-title">Terakhir dicatat</h3>
             <div id="recent-entries"></div>
@@ -178,8 +145,6 @@
           </div>
         </section>
 
-        <!-- Tab Jurnal: menampilkan seluruh riwayat transaksi dari yang paling baru.
-             Berbeda dengan tab Catat yang hanya menampilkan 10 terakhir. -->
         <section id="tab-jurnal" class="tab-panel">
           <div class="panel-card">
             <h2 class="panel-title">Jurnal stok</h2>
@@ -191,29 +156,23 @@
 
       </div>
 
-      <!-- Sidebar bon belanja yang otomatis menghitung bahan yang stoknya menipis
-           beserta estimasi biaya yang perlu dikeluarkan untuk membelinya -->
       <aside class="bon" id="bon-belanja"></aside>
     </div>
   </div>
 
-  <!-- Modal konfirmasi yang muncul saat pengguna menekan tombol hapus bahan.
-       Menampilkan nama bahan yang akan dihapus agar tidak terjadi kesalahan hapus. -->
   <div id="confirm-overlay" class="overlay" style="display:none">
     <div class="confirm-box">
       <p id="confirm-text">Yakin ingin menghapus bahan ini?</p>
       <div class="confirm-actions">
-        <button class="btn btn-outline" id="confirm-no">Batal</button>
-        <button class="btn btn-red" id="confirm-yes">Hapus</button>
+        <button class="btn btn-outline" id="confirm-no"><i data-lucide="x"></i> Batal</button>
+        <button class="btn btn-red" id="confirm-yes"><i data-lucide="trash-2"></i> Hapus</button>
       </div>
     </div>
   </div>
 
-  <!-- Toast notifikasi kecil yang muncul di bawah layar setiap ada aksi berhasil atau gagal -->
   <div id="toast" class="toast"></div>
 
-  <!-- Memuat file JavaScript utama sebagai modul agar bisa menggunakan fitur import dan export
-       untuk menghubungkan app.js dengan api.js dan ui.js -->
   <script type="module" src="frontend/js/app.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => { if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

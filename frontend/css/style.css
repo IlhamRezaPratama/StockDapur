@@ -1,6 +1,3 @@
-/* Stok Dapur - Tampilan bersih dan ringan untuk manajemen stok */
-
-/* Variabel warna dan font untuk tema terang */
 :root {
   --bg:        #F3F5F2;
   --bg-card:   #FFFFFF;
@@ -28,7 +25,6 @@
   --font-m:    'IBM Plex Mono', monospace;
 }
 
-/* Variabel warna dan font untuk tema gelap */
 :root[data-theme="dark"] {
   --bg:        #000000;
   --bg-card:   #030303;
@@ -52,7 +48,6 @@
   --shadow-login: 0 12px 32px rgba(0,0,0,.22);
 }
 
-/* Reset dasar agar tampilan konsisten di semua browser */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-b);font-size:14px;color:var(--text);background:var(--bg);line-height:1.5;min-height:100vh}
 h1,h2,h3{font-family:var(--font-h);font-weight:700}
@@ -61,14 +56,12 @@ button{cursor:pointer;font-family:var(--font-b)}
 input,select{font-family:var(--font-b)}
 table{border-collapse:collapse;width:100%}
 
-/* Halaman login ditampilkan di tengah layar */
 .login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg)}
 .login-box{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem 2rem;width:100%;max-width:380px;text-align:center;box-shadow:var(--shadow-login)}
 .login-title{font-size:1.8rem;color:var(--text);margin-bottom:.25rem}
 .login-sub{color:var(--dim);font-size:.85rem;margin-bottom:2rem}
 .login-theme-row{display:flex;justify-content:flex-end;margin-top:-1rem;margin-bottom:1.25rem}
 
-/* Gaya tombol untuk berbagai variasi yang dipakai di seluruh aplikasi */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.55rem 1.15rem;font-size:.82rem;font-weight:600;border:1px solid transparent;border-radius:var(--radius);transition:background .15s,border-color .15s,transform .15s}
 .btn:hover{filter:brightness(.96)}
 .btn:active{transform:translateY(1px)}
@@ -82,7 +75,6 @@ table{border-collapse:collapse;width:100%}
 .btn-icon{background:none;border:none;color:var(--dim);font-size:.85rem;padding:.15rem;line-height:1;transition:color .15s}
 .btn-icon:hover{color:var(--text)}
 
-/* Gaya field input dan label untuk semua form di aplikasi */
 .field{margin-bottom:1rem;text-align:left}
 .field label{display:block;font-size:.78rem;font-weight:600;color:var(--dim);margin-bottom:.3rem}
 .field input,.field select{width:100%;padding:.6rem .75rem;font-size:.85rem;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);color:var(--text)}
@@ -94,7 +86,6 @@ table{border-collapse:collapse;width:100%}
 .dim{font-weight:400;color:var(--dim)}
 .err{background:var(--red-bg);color:var(--red-t);border:1px solid rgba(185,80,70,.3);border-radius:var(--radius);padding:.5rem .7rem;font-size:.8rem;margin-bottom:1rem}
 
-/* Bar atas halaman yang berisi judul, info pengguna, dan navigasi tab */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);background:var(--bg-card)}
 .topbar-title{font-size:1.15rem;color:var(--text)}
 .topbar-right{display:flex;align-items:center;gap:1.5rem}
@@ -105,29 +96,24 @@ table{border-collapse:collapse;width:100%}
 .theme-toggle:hover{background:var(--green-bg);border-color:var(--green)}
 .theme-toggle:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
 
-/* Navigasi tab untuk berpindah antara halaman Rak, Catat, dan Jurnal */
 .tabs{display:flex;gap:2px;background:var(--bg);border-radius:var(--radius);padding:3px}
 .tab-btn{background:transparent;border:none;color:var(--dim);font-size:.82rem;font-weight:600;padding:.4rem 1rem;border-radius:6px;transition:background .15s,color .15s}
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{background:var(--green);color:#fff}
 
-/* Layout utama dua kolom: konten di kiri dan bon belanja di kanan */
 .layout{display:grid;grid-template-columns:1fr 280px;gap:1.5rem;padding:1.5rem 2rem 2rem;align-items:start;max-width:1600px;margin:0 auto}
 
 .content{min-width:0}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
 
-/* Ringkasan jumlah bahan dan nilai stok di atas daftar kartu bahan */
 .summary{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem 1.5rem;margin-bottom:1.25rem;font-size:.88rem;color:var(--dim);font-weight:500}
 .summary .val{color:var(--text);font-weight:700}
 .summary .val-red{color:var(--red-t);font-weight:700}
 .summary .val-green{color:var(--green-t);font-weight:700}
 
-/* Grid untuk menampilkan kartu bahan dalam beberapa kolom */
 .bahan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.25rem}
 
-/* Kartu setiap bahan yang menampilkan info stok, status, dan tombol aksi */
 .bahan-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;display:flex;flex-direction:column;position:relative;box-shadow:var(--shadow-card);transition:box-shadow .15s,border-color .15s}
 .bahan-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow-hover)}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.55rem}
@@ -147,7 +133,6 @@ table{border-collapse:collapse;width:100%}
 .fill-red{background:var(--red)}
 .card-meta{font-size:.75rem;color:var(--dim);margin-bottom:.75rem;line-height:1.6}
 
-/* Elemen details yang bisa dibuka dan ditutup untuk form tambah bahan */
 .details-add{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1.25rem;box-shadow:var(--shadow-card)}
 .details-add summary{padding:.85rem 1.1rem;font-weight:600;font-size:.88rem;cursor:pointer;color:var(--text);list-style:none;display:flex;align-items:center;gap:.45rem}
 .details-add summary::before{content:'▶';font-size:.65rem;transition:transform .15s;display:inline-block}
@@ -155,16 +140,13 @@ table{border-collapse:collapse;width:100%}
 .details-add summary::-webkit-details-marker{display:none}
 .form-add{padding:0 1.1rem 1.1rem}
 
-/* Kartu panel untuk membungkus konten di tab Catat dan Jurnal */
 .panel-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.25rem;box-shadow:var(--shadow-card)}
 .panel-title{font-size:1rem;color:var(--text);margin-bottom:1rem}
 
-/* Tombol toggle untuk memilih antara mode masuk dan keluar */
 .toggle-group{display:flex;gap:2px;background:var(--bg);border-radius:var(--radius);padding:3px;margin-bottom:1.25rem;width:fit-content}
 .toggle-btn{background:transparent;border:none;color:var(--dim);font-size:.82rem;font-weight:600;padding:.35rem 1.1rem;border-radius:6px;transition:background .15s,color .15s}
 .toggle-btn.active{background:var(--green);color:#fff}
 
-/* Satu baris riwayat transaksi di halaman Catat dan Jurnal */
 .entry{display:flex;gap:.85rem;padding:.7rem 0;border-bottom:1px solid var(--border);align-items:flex-start}
 .entry:last-child{border-bottom:none}
 .entry-border{width:3px;border-radius:2px;align-self:stretch;flex-shrink:0}
@@ -178,7 +160,6 @@ table{border-collapse:collapse;width:100%}
 .entry-amount.a-red{color:var(--red-t)}
 .entry-note{font-size:.78rem;color:var(--dim);margin-top:.15rem}
 
-/* Sidebar bon belanja yang menampilkan daftar bahan yang perlu dibeli */
 .bon{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;font-family:var(--font-m);font-size:.8rem;position:sticky;top:1.5rem;color:var(--dim);box-shadow:var(--shadow-card)}
 .bon-title{font-family:var(--font-h);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
 .bon-date{font-size:.75rem;margin-bottom:.65rem}
@@ -192,25 +173,20 @@ table{border-collapse:collapse;width:100%}
 .bon-note{font-size:.72rem;font-style:italic;color:var(--dim);margin-top:.4rem}
 .bon-empty{font-size:.8rem;color:var(--dim);padding:.5rem 0}
 
-/* Teks yang ditampilkan saat daftar masih kosong */
 .empty-text{text-align:center;color:var(--dim);padding:1.5rem 0;font-size:.85rem}
 
-/* Tautan untuk mereset data ke kondisi awal */
 .reset-link{display:inline-block;font-size:.8rem;color:var(--dim);font-style:italic;margin-top:.25rem}
 .reset-link:hover{color:var(--green-t);text-decoration:underline}
 
-/* Toast notifikasi yang muncul di bawah layar lalu menghilang otomatis */
 .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:#fff;padding:.65rem 1.3rem;border-radius:var(--radius);font-size:.85rem;font-weight:500;opacity:0;transition:transform .3s,opacity .3s;z-index:200;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.t-red{background:var(--red)}
 
-/* Modal overlay konfirmasi sebelum menghapus bahan */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:100}
 .confirm-box{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:360px;width:90%;text-align:center}
 .confirm-box p{margin-bottom:1.25rem;font-size:.9rem}
 .confirm-actions{display:flex;justify-content:center;gap:.75rem}
 
-/* Responsive: sesuaikan tampilan untuk layar yang lebih kecil */
 @media(max-width:1100px){.bahan-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:860px){
   .layout{grid-template-columns:1fr;gap:1.25rem}
@@ -226,3 +202,12 @@ table{border-collapse:collapse;width:100%}
   .bahan-grid{grid-template-columns:1fr}
   .field-row{flex-direction:column;gap:0}
 }
+
+i[data-lucide]{display:inline-block;vertical-align:middle;width:14px;height:14px;stroke-width:2;flex-shrink:0}
+.tab-btn i[data-lucide]{width:13px;height:13px}
+.topbar-title i[data-lucide]{width:18px;height:18px;margin-right:2px}
+.btn-icon i[data-lucide]{width:14px;height:14px}
+.btn-catat i[data-lucide]{width:13px;height:13px}
+.login-logo{display:flex;justify-content:center;margin-bottom:.75rem}
+.login-logo i[data-lucide]{width:40px;height:40px;color:var(--green);stroke-width:1.5}
+.summary i[data-lucide]{width:13px;height:13px;color:var(--dim)}

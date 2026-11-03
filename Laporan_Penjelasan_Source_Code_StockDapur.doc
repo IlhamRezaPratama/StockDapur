@@ -1,0 +1,512 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Laporan Penjelasan Source Code - Stock Dapur</title>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+<w:DoNotOptimizeForBrowser/>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+  @page {
+    size: 21.0cm 29.7cm; /* A4 */
+    margin: 2.5cm 2.5cm 2.5cm 2.5cm;
+  }
+  body {
+    font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+  }
+  h1.doc-title {
+    font-size: 20pt;
+    font-weight: bold;
+    color: #0f172a;
+    margin-bottom: 4pt;
+    text-align: center;
+  }
+  p.doc-sub {
+    font-size: 12pt;
+    color: #475569;
+    text-align: center;
+    margin-bottom: 18pt;
+  }
+  table.meta-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24pt;
+  }
+  table.meta-table td {
+    padding: 6pt 10pt;
+    border: 1px solid #cbd5e1;
+    font-size: 10pt;
+  }
+  table.meta-table td.header-col {
+    background-color: #f1f5f9;
+    font-weight: bold;
+    width: 28%;
+    color: #334155;
+  }
+  h2.category-head {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #0f172a;
+    border-bottom: 2pt solid #0f172a;
+    padding-bottom: 4pt;
+    margin-top: 24pt;
+    margin-bottom: 14pt;
+  }
+  h3.example-head {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #0f172a;
+    margin-top: 14pt;
+    margin-bottom: 2pt;
+  }
+  p.caption-italic {
+    font-size: 9.5pt;
+    font-style: italic;
+    color: #64748b;
+    margin-bottom: 8pt;
+  }
+  table.code-box-table {
+    width: 100%;
+    background-color: #1e1e2e;
+    border: 1px solid #313244;
+    border-radius: 6px;
+    margin-bottom: 10pt;
+  }
+  table.code-box-table td.code-cell {
+    padding: 10pt 14pt;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9.5pt;
+    color: #cdd6f4;
+    line-height: 1.45;
+  }
+  .kw { color: #cba6f7; font-weight: bold; }
+  .fn { color: #89b4fa; }
+  .str { color: #f9e2af; }
+  .tag { color: #f38ba8; font-weight: bold; }
+  .attr { color: #a6e3a1; }
+  .cmt { color: #6c7086; font-style: italic; }
+  .num { color: #fab387; }
+  .val { color: #94e2d5; }
+  
+  .explanation-head {
+    font-size: 10.5pt;
+    font-weight: bold;
+    color: #0f172a;
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+  }
+  .explanation-head span {
+    font-weight: normal;
+    color: #334155;
+  }
+  ul.exp-bullets {
+    margin-top: 4pt;
+    margin-bottom: 16pt;
+    padding-left: 20pt;
+  }
+  ul.exp-bullets li {
+    font-size: 10pt;
+    margin-bottom: 4pt;
+    color: #334155;
+    line-height: 1.45;
+  }
+  code.inline-code {
+    font-family: 'Consolas', monospace;
+    font-size: 9pt;
+    background-color: #f1f5f9;
+    color: #991b1b;
+    padding: 1pt 4pt;
+    border: 1px solid #e2e8f0;
+  }
+</style>
+</head>
+<body>
+
+<h1 class="doc-title">LAPORAN PENJELASAN SOURCE CODE</h1>
+<p class="doc-sub">Sistem Informasi Manajemen Stok Dapur Berbasis Web (Semester 5)</p>
+
+<table class="meta-table">
+  <tr>
+    <td class="header-col">Judul Website</td>
+    <td><strong>Stok Dapur</strong> — Aplikasi Manajemen Stok Bahan Baku Dapur</td>
+  </tr>
+  <tr>
+    <td class="header-col">Mata Kuliah</td>
+    <td>Pemrograman Web — Semester 5</td>
+  </tr>
+  <tr>
+    <td class="header-col">Arsitektur & Stack</td>
+    <td>HTML5, CSS3, Vanilla JavaScript (ES6+), Node.js (Express.js), MongoDB Atlas</td>
+  </tr>
+  <tr>
+    <td class="header-col">Deployment</td>
+    <td>GitHub Pages (Frontend) & Vercel Serverless Functions (Backend)</td>
+  </tr>
+</table>
+
+<!-- BAGIAN 1: HTML -->
+<h2 class="category-head">1. BAGIAN HTML (index.html)</h2>
+
+<!-- Contoh 1: Form Catat Stok -->
+<h3 class="example-head">Contoh 1: Bagian HTML (index.html - Form Catat Stok)</h3>
+<p class="caption-italic">(Di sini kamu tempel screenshot potongan kodingan form catat)</p>
+
+<table class="code-box-table" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="code-cell">
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"toggle-group"</span> <span class="attr">id</span>=<span class="str">"catat-toggle"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"toggle-btn active"</span> <span class="attr">data-type</span>=<span class="str">"masuk"</span><span class="tag">&gt;</span>Masuk<span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"toggle-btn"</span> <span class="attr">data-type</span>=<span class="str">"keluar"</span><span class="tag">&gt;</span>Keluar<span class="tag">&lt;/button&gt;</span><br>
+<span class="tag">&lt;/div&gt;</span><br>
+<br>
+<span class="tag">&lt;form</span> <span class="attr">id</span>=<span class="str">"form-catat"</span> <span class="attr">autocomplete</span>=<span class="str">"off"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"field"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="str">"catat-bahan"</span><span class="tag">&gt;</span>Bahan<span class="tag">&lt;/label&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;select</span> <span class="attr">id</span>=<span class="str">"catat-bahan"</span> <span class="attr">required</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="str">""</span><span class="tag">&gt;</span>Pilih bahan<span class="tag">&lt;/option&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/select&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"field"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;label</span> <span class="attr">id</span>=<span class="str">"catat-jumlah-label"</span> <span class="attr">for</span>=<span class="str">"catat-jumlah"</span><span class="tag">&gt;</span>Jumlah masuk<span class="tag">&lt;/label&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"number"</span> <span class="attr">id</span>=<span class="str">"catat-jumlah"</span> <span class="attr">min</span>=<span class="str">"0"</span> <span class="attr">step</span>=<span class="str">"any"</span> <span class="attr">placeholder</span>=<span class="str">"0"</span> <span class="attr">required</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span>
+    </td>
+  </tr>
+</table>
+
+<p class="explanation-head">Penjelasan Source Code: <span>Bagian ini adalah formulir yang digunakan pengguna untuk mencatat transaksi barang, baik saat stok bahan bertambah (masuk) maupun saat bahan digunakan (keluar).</span></p>
+<ul class="exp-bullets">
+  <li><code class="inline-code">&lt;button class="toggle-btn" data-type="masuk"&gt;</code> Tombol pilihan jenis transaksi. Atribut <code class="inline-code">data-type</code> digunakan oleh JavaScript untuk mengetahui apakah pengguna sedang mencatat stok masuk atau stok keluar.</li>
+  <li><code class="inline-code">&lt;form id="form-catat" autocomplete="off"&gt;</code> Tag pembungkus formulir input. Diberi <code class="inline-code">autocomplete="off"</code> agar saran riwayat ketikan browser tidak menutupi tampilan form.</li>
+  <li><code class="inline-code">&lt;select id="catat-bahan" required&gt;</code> Menu dropdown untuk memilih bahan yang transaksinya ingin dicatat. Atribut <code class="inline-code">required</code> memastikan formulir tidak bisa dikirim jika pengguna belum memilih bahan.</li>
+  <li><code class="inline-code">&lt;input type="number" min="0" step="any" required&gt;</code> Kolom untuk memasukkan jumlah kuantitas bahan. Atribut <code class="inline-code">min="0"</code> mencegah pengisian angka minus, sedangkan <code class="inline-code">step="any"</code> mengizinkan input bilangan desimal (misalnya 1.5 kg atau 0.25 liter).</li>
+</ul>
+
+<!-- Contoh 2: Halaman Login -->
+<h3 class="example-head">Contoh 2: Bagian HTML (index.html - Halaman Login & Formulir Autentikasi)</h3>
+<p class="caption-italic">(Di sini kamu tempel screenshot potongan kodingan login form)</p>
+
+<table class="code-box-table" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="code-cell">
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="str">"login-page"</span> <span class="attr">class</span>=<span class="str">"login-page"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"login-box"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h1</span> <span class="attr">class</span>=<span class="str">"login-title"</span><span class="tag">&gt;</span>Stok Dapur<span class="tag">&lt;/h1&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;p</span> <span class="attr">class</span>=<span class="str">"login-sub"</span><span class="tag">&gt;</span>Masuk untuk mengelola stok bahan baku<span class="tag">&lt;/p&gt;</span><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;form</span> <span class="attr">id</span>=<span class="str">"form-login"</span> <span class="attr">autocomplete</span>=<span class="str">"off"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"field"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="str">"login-user"</span><span class="tag">&gt;</span>Username<span class="tag">&lt;/label&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"text"</span> <span class="attr">id</span>=<span class="str">"login-user"</span> <span class="attr">placeholder</span>=<span class="str">"Masukkan username"</span> <span class="attr">required</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"field"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="str">"login-pass"</span><span class="tag">&gt;</span>Password<span class="tag">&lt;/label&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"password"</span> <span class="attr">id</span>=<span class="str">"login-pass"</span> <span class="attr">placeholder</span>=<span class="str">"Masukkan password"</span> <span class="attr">required</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="str">"login-error"</span> <span class="attr">class</span>=<span class="str">"err"</span> <span class="attr">style</span>=<span class="str">"display:none"</span><span class="tag">&gt;&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="str">"submit"</span> <span class="attr">class</span>=<span class="str">"btn btn-green btn-full"</span><span class="tag">&gt;</span>Masuk<span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/form&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br>
+<span class="tag">&lt;/div&gt;</span>
+    </td>
+  </tr>
+</table>
+
+<p class="explanation-head">Penjelasan Source Code: <span>Halaman awal antarmuka login yang mengamankan sistem agar hanya staf berwenang yang dapat mengakses data inventaris stok dapur.</span></p>
+<ul class="exp-bullets">
+  <li><code class="inline-code">&lt;div id="login-page"&gt;</code> Kontainer pembungkus layar penuh halaman login yang ditampilkan secara aktif saat aplikasi pertama kali dibuka browser.</li>
+  <li><code class="inline-code">&lt;input type="password" id="login-pass" required&gt;</code> Masukan password yang menyamarkan karakter dengan masking dot demi keamanan visual staf.</li>
+  <li><code class="inline-code">&lt;div id="login-error"&gt;</code> Wadah pesan galat dinamis yang akan diaktifkan oleh JavaScript jika kombinasi username/password tidak cocok.</li>
+</ul>
+
+<!-- Contoh 3: Topbar Navigasi -->
+<h3 class="example-head">Contoh 3: Bagian HTML (index.html - Topbar Navigasi & Tab)</h3>
+<p class="caption-italic">(Di sini kamu tempel screenshot potongan kodingan topbar)</p>
+
+<table class="code-box-table" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="code-cell">
+<span class="tag">&lt;header</span> <span class="attr">class</span>=<span class="str">"topbar"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;h1</span> <span class="attr">class</span>=<span class="str">"topbar-title"</span><span class="tag">&gt;</span>Stok dapur<span class="tag">&lt;/h1&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"topbar-right"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"user-tag"</span> <span class="attr">id</span>=<span class="str">"user-tag"</span><span class="tag">&gt;&lt;/span&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="str">"button"</span> <span class="attr">class</span>=<span class="str">"theme-toggle"</span> <span class="attr">id</span>=<span class="str">"theme-toggle"</span> <span class="attr">aria-pressed</span>=<span class="str">"false"</span><span class="tag">&gt;</span> Mode gelap<span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;nav</span> <span class="attr">class</span>=<span class="str">"tabs"</span> <span class="attr">id</span>=<span class="str">"nav-tabs"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"tab-btn active"</span> <span class="attr">data-tab</span>=<span class="str">"rak"</span><span class="tag">&gt;</span>Rak<span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"tab-btn"</span> <span class="attr">data-tab</span>=<span class="str">"catat"</span><span class="tag">&gt;</span>Catat<span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"tab-btn"</span> <span class="attr">data-tab</span>=<span class="str">"jurnal"</span><span class="tag">&gt;</span>Jurnal<span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/nav&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br>
+<span class="tag">&lt;/header&gt;</span>
+    </td>
+  </tr>
+</table>
+
+<p class="explanation-head">Penjelasan Source Code: <span>Bilah navigasi utama bagian atas yang memuat identitas pengguna, pengalih tema instan, dan menu navigasi tab SPA.</span></p>
+<ul class="exp-bullets">
+  <li><code class="inline-code">&lt;span id="user-tag"&gt;</code> Diisi nama staf aktif dan tautan logout setelah login berhasil.</li>
+  <li><code class="inline-code">&lt;button class="tab-btn" data-tab="..."&gt;</code> Menggunakan data-attribute untuk mengidentifikasi panel target tanpa memicu perpindahan URL halaman.</li>
+</ul>
+
+<!-- BAGIAN 2: JAVASCRIPT FRONTEND -->
+<h2 class="category-head">2. BAGIAN JAVASCRIPT FRONTEND (frontend/js/app.js)</h2>
+
+<!-- Contoh 4: State Global -->
+<h3 class="example-head">Contoh 4: Bagian JavaScript (app.js - State Management Global)</h3>
+<p class="caption-italic">(Di sini kamu tempel screenshot potongan kodingan state global di app.js)</p>
+
+<table class="code-box-table" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="code-cell">
+<span class="kw">let</span> penggunaAktif = <span class="kw">null</span>;<br>
+<span class="kw">let</span> daftarBahan&nbsp;&nbsp;&nbsp;= [];<br>
+<span class="kw">let</span> riwayat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= [];<br>
+<span class="kw">let</span> tabAktif&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="str">'rak'</span>;<br>
+<span class="kw">let</span> tipeCapatan&nbsp;&nbsp;&nbsp;= <span class="str">'masuk'</span>;<br>
+<span class="kw">let</span> idSedangEdit&nbsp;&nbsp;= <span class="kw">null</span>;<br>
+<span class="kw">let</span> idAkanHapus&nbsp;&nbsp;&nbsp;= <span class="kw">null</span>;<br>
+<br>
+<span class="cmt">// Fungsi pembantu selektor elemen DOM</span><br>
+<span class="kw">const</span> <span class="fn">el</span> = id =&gt; document.<span class="fn">getElementById</span>(id);
+    </td>
+  </tr>
+</table>
+
+<p class="explanation-head">Penjelasan Source Code: <span>State global terpusat yang mengatur status sesi pengguna, koleksi bahan dari database, riwayat mutasi transaksi, dan tab aktif.</span></p>
+<ul class="exp-bullets">
+  <li><code class="inline-code">let daftarBahan = []</code> Array penyimpan seluruh bahan dapur yang disinkronisasikan secara reaktif ke DOM.</li>
+  <li><code class="inline-code">let riwayat = []</code> Array log catatan transaksi mutasi stok selama sesi aktif staf berlangsung.</li>
+  <li><code class="inline-code">const el = id =&gt; ...</code> Helper fungsi ringkas untuk efisiensi pemilihan node dokumen.</li>
+</ul>
+
+<!-- Contoh 5: Simpan Bahan -->
+<h3 class="example-head">Contoh 5: Bagian JavaScript (app.js - Simpan Bahan: Tambah Baru vs Edit)</h3>
+<p class="caption-italic">(Di sini kamu tempel screenshot potongan kodingan simpanBahan)</p>
+
+<table class="code-box-table" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="code-cell">
+<span class="kw">async function</span> <span class="fn">simpanBahan</span>(e) {<br>
+&nbsp;&nbsp;e.<span class="fn">preventDefault</span>();<br>
+&nbsp;&nbsp;<span class="kw">const</span> payload = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;namaBahan:&nbsp;&nbsp;&nbsp;<span class="fn">el</span>(<span class="str">'add-nama'</span>).value.<span class="fn">trim</span>(),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;satuan:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">el</span>(<span class="str">'add-satuan'</span>).value.<span class="fn">trim</span>(),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stok:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Number</span>(<span class="fn">el</span>(<span class="str">'add-stok'</span>).value) || <span class="num">0</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;minStok:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Number</span>(<span class="fn">el</span>(<span class="str">'add-min'</span>).value) || <span class="num">0</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;hargaSatuan: <span class="fn">parseInt</span>(<span class="fn">el</span>(<span class="str">'add-harga'</span>).value) || <span class="num">0</span><br>
+&nbsp;&nbsp;};<br>
+<br>
+&nbsp;&nbsp;<span class="kw">if</span> (idSedangEdit !== <span class="kw">null</span>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">const</span> hasil = <span class="kw">await</span> <span class="fn">ubahBahanApi</span>(idSedangEdit, payload);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> (hasil.ok) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">const</span> idx = daftarBahan.<span class="fn">findIndex</span>(b =&gt; b._id === idSedangEdit);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> (idx !== -<span class="num">1</span>) daftarBahan[idx] = hasil.bahan;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">toast</span>(<span class="str">'Bahan berhasil diubah'</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;} <span class="kw">else</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">const</span> hasil = <span class="kw">await</span> <span class="fn">tambahBahanApi</span>(payload);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> (hasil.ok) { daftarBahan.<span class="fn">push</span>(hasil.bahan); <span class="fn">toast</span>(<span class="str">'Bahan berhasil ditambahkan'</span>); }<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="fn">resetFormBahan</span>();<br>
+&nbsp;&nbsp;<span class="fn">el</span>(<span class="str">'details-add'</span>).open = <span class="kw">false</span>;<br>
+&nbsp;&nbsp;<span class="fn">render</span>();<br>
+}
+    </td>
+  </tr>
+</table>
+
+<p class="explanation-head">Penjelasan Source Code: <span>Logika ganda penyimpanan formulir yang secara cerdas mendeteksi operasi penambahan bahan baru atau pengeditan data bahan yang sudah ada.</span></p>
+<ul class="exp-bullets">
+  <li><code class="inline-code">if (idSedangEdit !== null)</code> Jika ID bahan terisi, memanggil metode <code class="inline-code">ubahBahanApi</code> dan memperbarui data pada array state lokal secara instan.</li>
+  <li><code class="inline-code">daftarBahan.push(hasil.bahan)</code> Jika mode tambah baru, menyisipkan dokumen bahan baru langsung ke state array tanpa memerlukan muat ulang halaman.</li>
+</ul>
+
+<!-- Contoh 6: Catat Mutasi Stok -->
+<h3 class="example-head">Contoh 6: Bagian JavaScript (app.js - Logika Transaksi Catat Stok Masuk/Keluar)</h3>
+<p class="caption-italic">(Di sini kamu tempel screenshot potongan kodingan prosesCatat)</p>
+
+<table class="code-box-table" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="code-cell">
+<span class="kw">async function</span> <span class="fn">prosesCatat</span>(e) {<br>
+&nbsp;&nbsp;e.<span class="fn">preventDefault</span>();<br>
+&nbsp;&nbsp;<span class="kw">const</span> id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="fn">el</span>(<span class="str">'catat-bahan'</span>).value;<br>
+&nbsp;&nbsp;<span class="kw">const</span> jumlah&nbsp;&nbsp;= <span class="fn">Number</span>(<span class="fn">el</span>(<span class="str">'catat-jumlah'</span>).value);<br>
+&nbsp;&nbsp;<span class="kw">const</span> catatan = <span class="fn">el</span>(<span class="str">'catat-catatan'</span>).value.<span class="fn">trim</span>();<br>
+&nbsp;&nbsp;<span class="kw">const</span> errEl&nbsp;&nbsp;&nbsp;= <span class="fn">el</span>(<span class="str">'catat-error'</span>);<br>
+<br>
+&nbsp;&nbsp;<span class="kw">if</span> (!id || jumlah &lt;= <span class="num">0</span>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;errEl.textContent = <span class="str">'Masukkan jumlah yang lebih besar dari 0.'</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;errEl.style.display = <span class="str">'block'</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span>;<br>
+&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;<span class="kw">const</span> hasil = <span class="kw">await</span> <span class="fn">catatApi</span>(id, { tipe: tipeCapatan, jumlah, catatan });<br>
+&nbsp;&nbsp;<span class="kw">if</span> (!hasil.ok) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;errEl.textContent = hasil.pesan;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;errEl.style.display = <span class="str">'block'</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span>;<br>
+&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;errEl.style.display = <span class="str">'none'</span>;<br>
+&nbsp;&nbsp;<span class="kw">const</span> idx = daftarBahan.<span class="fn">findIndex</span>(b =&gt; b._id === id);<br>
+&nbsp;&nbsp;<span class="kw">if</span> (idx !== -<span class="num">1</span>) daftarBahan[idx] = hasil.bahan;<br>
+&nbsp;&nbsp;riwayat.<span class="fn">push</span>(hasil.transaksi);<br>
+<br>
+&nbsp;&nbsp;<span class="kw">const</span> verb = tipeCapatan === <span class="str">'masuk'</span> ? <span class="str">'ditambahkan'</span> : <span class="str">'dikeluarkan'</span>;<br>
+&nbsp;&nbsp;<span class="fn">toast</span>(<span class="str">`${formatJumlah(jumlah)} ${hasil.bahan.satuan} ${hasil.bahan.nama_bahan} berhasil ${verb}`</span>);<br>
+&nbsp;&nbsp;<span class="fn">el</span>(<span class="str">'form-catat'</span>).<span class="fn">reset</span>();<br>
+&nbsp;&nbsp;<span class="fn">render</span>();<br>
+}
+    </td>
+  </tr>
+</table>
+
+<p class="explanation-head">Penjelasan Source Code: <span>Pengendali transaksi mutasi fisik barang dapur yang memvalidasi masukan angka, memutakhirkan saldo stok lokal dan server, serta mencatat entri jurnal.</span></p>
+<ul class="exp-bullets">
+  <li><code class="inline-code">if (!id || jumlah &lt;= 0)</code> Validasi proteksi awal sisi klien sebelum payload dikirimkan melalui jaringan internet.</li>
+  <li><code class="inline-code">riwayat.push(hasil.transaksi)</code> Menambahkan bukti log mutasi transaksi ke array jurnal sesi aktif.</li>
+</ul>
+
+<!-- BAGIAN 3: JAVASCRIPT UI -->
+<h2 class="category-head">3. BAGIAN TAMPILAN & DOM (frontend/js/ui.js)</h2>
+
+<!-- Contoh 7: Penentuan Status Stok -->
+<h3 class="example-head">Contoh 7: Bagian JavaScript (ui.js - Penentuan Status Stok Bahan)</h3>
+<p class="caption-italic">(Di sini kamu tempel screenshot potongan kodingan getStatus)</p>
+
+<table class="code-box-table" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="code-cell">
+<span class="kw">export function</span> <span class="fn">getStatus</span>(b) {<br>
+&nbsp;&nbsp;<span class="kw">if</span> (b.stok &lt; b.min_stok)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> { label: <span class="str">'Menipis'</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cls: <span class="str">'red'</span>&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+&nbsp;&nbsp;<span class="kw">if</span> (b.stok &lt; b.min_stok * <span class="num">1.5</span>) <span class="kw">return</span> { label: <span class="str">'Hampir menipis'</span>, cls: <span class="str">'yellow'</span> };<br>
+&nbsp;&nbsp;<span class="kw">return</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ label: <span class="str">'Aman'</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cls: <span class="str">'green'</span>&nbsp;&nbsp;};<br>
+}
+    </td>
+  </tr>
+</table>
+
+<p class="explanation-head">Penjelasan Source Code: <span>Fungsi penentu status kondisi kuantitas bahan yang mengembalikan objek label dan kelas warna (merah, kuning, hijau) untuk disematkan pada kartu rak.</span></p>
+<ul class="exp-bullets">
+  <li><code class="inline-code">b.stok &lt; b.min_stok</code> Mendeteksi stok di bawah ambang batas minimal dan memberikan status Menipis (merah).</li>
+  <li><code class="inline-code">b.stok &lt; b.min_stok * 1.5</code> Mendeteksi peringatan awal Hampir Menipis (kuning).</li>
+</ul>
+
+<!-- Contoh 8: Render Bon Belanja -->
+<h3 class="example-head">Contoh 8: Bagian JavaScript (ui.js - Render Sidebar Bon Belanja Otomatis)</h3>
+<p class="caption-italic">(Di sini kamu tempel screenshot potongan kodingan renderBon)</p>
+
+<table class="code-box-table" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="code-cell">
+<span class="kw">export function</span> <span class="fn">renderBon</span>(bahanList) {<br>
+&nbsp;&nbsp;<span class="kw">const</span> menipis = bahanList.<span class="fn">filter</span>(b =&gt; b.stok &lt; b.min_stok);<br>
+&nbsp;&nbsp;<span class="kw">let</span> html = <span class="str">`&lt;div class="bon-title"&gt;Bon belanja&lt;/div&gt;&lt;div class="bon-date"&gt;${hariIni()}&lt;/div&gt;`</span>;<br>
+<br>
+&nbsp;&nbsp;<span class="kw">if</span> (!menipis.length) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;html += <span class="str">`&lt;hr class="bon-divider"&gt;&lt;div class="bon-empty"&gt;Semua stok aman 👍&lt;/div&gt;`</span>;<br>
+&nbsp;&nbsp;} <span class="kw">else</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">let</span> total = <span class="num">0</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;html += <span class="str">`&lt;hr class="bon-divider"&gt;`</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;menipis.<span class="fn">forEach</span>(b =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">const</span> perlu = b.min_stok - b.stok;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">const</span> biaya = perlu * b.harga_satuan;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total += biaya;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;html += <span class="str">`&lt;div class="bon-line"&gt;&lt;span class="bon-name"&gt;${b.nama_bahan}&lt;/span&gt;&lt;span class="bon-detail"&gt;${formatJumlah(perlu)} ${b.satuan} &lt;span class="bon-price"&gt;${formatRp(biaya)}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;`</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;&nbsp;&nbsp;html += <span class="str">`&lt;hr class="bon-divider"&gt;&lt;div class="bon-total"&gt;&lt;span&gt;Total&lt;/span&gt;&lt;span class="bon-price"&gt;${formatRp(total)}&lt;/span&gt;&lt;/div&gt;`</span>;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;document.<span class="fn">getElementById</span>(<span class="str">'bon-belanja'</span>).innerHTML = html;<br>
+}
+    </td>
+  </tr>
+</table>
+
+<p class="explanation-head">Penjelasan Source Code: <span>Sistem kalkulator cerdas sidebar kanan yang mengidentifikasi seluruh kekurangan bahan dan otomatis menjumlahkan estimasi total uang belanja yang harus disiapkan.</span></p>
+<ul class="exp-bullets">
+  <li><code class="inline-code">const perlu = b.min_stok - b.stok</code> Menghitung jumlah defisit kuantitas yang perlu dibeli kembali.</li>
+  <li><code class="inline-code">const biaya = perlu * b.harga_satuan</code> Mengkalkulasi subtotal harga pembelian per bahan.</li>
+</ul>
+
+<!-- BAGIAN 4: BACKEND EXPRESS & MONGODB -->
+<h2 class="category-head">4. BAGIAN BACKEND EXPRESS & MONGODB (backend/server.js)</h2>
+
+<!-- Contoh 9: getDB Connection Caching -->
+<h3 class="example-head">Contoh 9: Bagian Backend Node.js (server.js - Koneksi MongoDB Serverless Caching)</h3>
+<p class="caption-italic">(Di sini kamu tempel screenshot potongan kodingan getDB di server.js)</p>
+
+<table class="code-box-table" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="code-cell">
+<span class="kw">const</span> express = <span class="fn">require</span>(<span class="str">'express'</span>);<br>
+<span class="kw">const</span> { MongoClient, ObjectId } = <span class="fn">require</span>(<span class="str">'mongodb'</span>);<br>
+<span class="fn">require</span>(<span class="str">'dotenv'</span>).<span class="fn">config</span>();<br>
+<br>
+<span class="kw">let</span> cachedDb = <span class="kw">null</span>;<br>
+<br>
+<span class="kw">async function</span> <span class="fn">getDB</span>() {<br>
+&nbsp;&nbsp;<span class="kw">if</span> (cachedDb) <span class="kw">return</span> cachedDb;<br>
+&nbsp;&nbsp;<span class="kw">const</span> client = <span class="kw">new</span> <span class="fn">MongoClient</span>(process.env.MONGO_URI);<br>
+&nbsp;&nbsp;<span class="kw">await</span> client.<span class="fn">connect</span>();<br>
+&nbsp;&nbsp;cachedDb = client.<span class="fn">db</span>(<span class="str">'stockdapur'</span>);<br>
+&nbsp;&nbsp;<span class="kw">return</span> cachedDb;<br>
+}
+    </td>
+  </tr>
+</table>
+
+<p class="explanation-head">Penjelasan Source Code: <span>Manajemen koneksi database MongoDB Atlas dengan teknik caching pool connection untuk mengoptimalkan kinerja eksekusi serverless Vercel.</span></p>
+<ul class="exp-bullets">
+  <li><code class="inline-code">if (cachedDb) return cachedDb</code> Memanfaatkan kembali koneksi yang sudah terbuka tanpa perlu proses handshaking TCP ulang.</li>
+  <li><code class="inline-code">client.db('stockdapur')</code> Mengakses database inventaris cloud MongoDB.</li>
+</ul>
+
+<!-- Contoh 10: Mutasi Stok Backend -->
+<h3 class="example-head">Contoh 10: Bagian Backend Node.js (server.js - Validasi & Mutasi Stok Server-Side)</h3>
+<p class="caption-italic">(Di sini kamu tempel screenshot potongan kodingan endpoint catat stok)</p>
+
+<table class="code-box-table" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="code-cell">
+app.<span class="fn">post</span>(<span class="str">'/api/stok/:id/catat'</span>, harusLogin, <span class="kw">async</span> (req, res) =&gt; {<br>
+&nbsp;&nbsp;<span class="kw">const</span> db = <span class="kw">await</span> <span class="fn">getDB</span>();<br>
+&nbsp;&nbsp;<span class="kw">const</span> { tipe, jumlah, catatan } = req.body;<br>
+&nbsp;&nbsp;<span class="kw">const</span> bahan = <span class="kw">await</span> db.<span class="fn">collection</span>(<span class="str">'bahan'</span>).<span class="fn">findOne</span>({ _id: <span class="kw">new</span> <span class="fn">ObjectId</span>(req.params.id) });<br>
+&nbsp;&nbsp;<span class="kw">if</span> (!bahan) <span class="kw">return</span> res.<span class="fn">status</span>(<span class="num">404</span>).<span class="fn">json</span>({ ok: <span class="kw">false</span>, pesan: <span class="str">'Bahan tidak ditemukan.'</span> });<br>
+&nbsp;&nbsp;<span class="kw">if</span> (tipe === <span class="str">'keluar'</span> &amp;&amp; <span class="fn">Number</span>(jumlah) &gt; bahan.stok)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> res.<span class="fn">status</span>(<span class="num">400</span>).<span class="fn">json</span>({ ok: <span class="kw">false</span>, pesan: <span class="str">'Stok tidak cukup.'</span> });<br>
+&nbsp;&nbsp;<span class="kw">const</span> stokBaru = tipe === <span class="str">'masuk'</span> ? bahan.stok + <span class="fn">Number</span>(jumlah) : bahan.stok - <span class="fn">Number</span>(jumlah);<br>
+&nbsp;&nbsp;<span class="kw">await</span> db.<span class="fn">collection</span>(<span class="str">'bahan'</span>).<span class="fn">updateOne</span>({ _id: <span class="kw">new</span> <span class="fn">ObjectId</span>(req.params.id) }, { $set: { stok: stokBaru } });<br>
+&nbsp;&nbsp;<span class="kw">const</span> bahanTerbaru = <span class="kw">await</span> db.<span class="fn">collection</span>(<span class="str">'bahan'</span>).<span class="fn">findOne</span>({ _id: <span class="kw">new</span> <span class="fn">ObjectId</span>(req.params.id) });<br>
+&nbsp;&nbsp;res.<span class="fn">json</span>({<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ok: <span class="kw">true</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bahan: bahanTerbaru,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transaksi: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;waktu: <span class="kw">new</span> <span class="fn">Date</span>().<span class="fn">toISOString</span>(), tipe,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;namaBahan: bahan.nama_bahan, jumlah: <span class="fn">Number</span>(jumlah),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;satuan: bahan.satuan, stokSetelah: stokBaru,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oleh: req.pengguna.nama, catatan: catatan || <span class="str">''</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;});<br>
+});
+    </td>
+  </tr>
+</table>
+
+<p class="explanation-head">Penjelasan Source Code: <span>Endpoint mutasi stok di level server yang memverifikasi integritas saldo persediaan agar kuantitas barang fisik dapur tidak dapat bernilai minus.</span></p>
+<ul class="exp-bullets">
+  <li><code class="inline-code">if (tipe === 'keluar' &amp;&amp; Number(jumlah) &gt; bahan.stok)</code> Menolak request HTTP dan mengirim status 400 Bad Request jika stok gudang tidak mencukupi untuk pemakaian.</li>
+  <li><code class="inline-code">db.collection('bahan').updateOne(...)</code> Melakukan update saldo stok baru ke dokumen database secara atomik.</li>
+</ul>
+
+</body>
+</html>
