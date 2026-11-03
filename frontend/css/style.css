@@ -92,7 +92,7 @@ table{border-collapse:collapse;width:100%}
 .user-tag{font-size:.78rem;color:var(--dim)}
 .user-tag a{color:var(--green-t);margin-left:.15rem}
 .user-tag a:hover{text-decoration:underline}
-.theme-toggle{background:var(--bg-input);color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:.4rem .7rem;font-size:.78rem;font-weight:600;white-space:nowrap;transition:background .15s,border-color .15s}
+.theme-toggle{background:var(--bg-input);color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:.4rem .7rem;font-size:.78rem;font-weight:600;white-space:nowrap;transition:background .15s,border-color .15s;display:inline-flex;align-items:center;gap:.35rem}
 .theme-toggle:hover{background:var(--green-bg);border-color:var(--green)}
 .theme-toggle:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
 
@@ -212,5 +212,5 @@ i[data-lucide]{display:inline-block;vertical-align:middle;width:14px;height:14px
 .btn-catat i[data-lucide]{width:13px;height:13px}
 .field label i[data-lucide]{width:12px;height:12px;margin-right:3px}
 .login-logo{display:flex;justify-content:center;margin-bottom:.75rem}
-.login-logo i[data-lucide]{width:40px;height:40px;color:var(--green);stroke-width:1.5}
+.login-logo i[data-lucide]{width:56px;height:56px;color:var(--green);stroke-width:1.5}
 .summary i[data-lucide]{width:13px;height:13px;color:var(--dim)}
