@@ -250,7 +250,7 @@ i[data-lucide]{display:inline-block;vertical-align:middle;width:14px;height:14px
 .btn i[data-lucide]{width:14px;height:14px}
 .btn-icon i[data-lucide]{width:14px;height:14px}
 .btn-catat i[data-lucide]{width:13px;height:13px}
-.field label i[data-lucide]{width:13px;height:13px;vertical-align:0px;margin-right:3px}
+.field label i[data-lucide]{width:13px;height:13px;vertical-align:1px;margin-right:3px}
 .login-logo{display:flex;justify-content:center;margin-bottom:.75rem}
 .login-logo i[data-lucide]{width:56px;height:56px;color:var(--green);stroke-width:1.5}
-.summary i[data-lucide]{width:14px;height:14px;color:var(--dim);vertical-align:-1px}
+.summary i[data-lucide]{width:14px;height:14px;color:var(--dim);vertical-align:0px}
