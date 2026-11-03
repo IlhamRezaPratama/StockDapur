@@ -89,9 +89,46 @@ table{border-collapse:collapse;width:100%}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);background:var(--bg-card)}
 .topbar-title{font-size:1.15rem;color:var(--text)}
 .topbar-right{display:flex;align-items:center;gap:1.5rem}
-.user-tag{font-size:.78rem;color:var(--dim)}
-.user-tag a{color:var(--green-t);margin-left:.15rem}
-.user-tag a:hover{text-decoration:underline}
+.user-tag{
+  font-size:.82rem;
+  color:var(--text);
+  background:var(--bg-input);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:.45rem .85rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-weight:500;
+  transition:background .15s,border-color .15s
+}
+.user-tag:hover{
+  background:var(--green-bg);
+  border-color:var(--green)
+}
+.user-tag i[data-lucide]{
+  width:15px;
+  height:15px;
+  color:var(--green-t)
+}
+.user-tag a{
+  color:var(--red-t);
+  margin-left:.25rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.35rem;
+  font-weight:600;
+  transition:color .15s
+}
+.user-tag a:hover{
+  color:var(--red);
+  text-decoration:none
+}
+.user-tag a i[data-lucide]{
+  width:13px;
+  height:13px;
+  color:currentColor
+}
 .theme-toggle{background:var(--bg-input);color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:.4rem .7rem;font-size:.78rem;font-weight:600;white-space:nowrap;transition:background .15s,border-color .15s;display:inline-flex;align-items:center;gap:.35rem}
 .theme-toggle:hover{background:var(--green-bg);border-color:var(--green)}
 .theme-toggle:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
