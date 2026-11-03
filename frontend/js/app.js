@@ -189,7 +189,8 @@ async function prosesCatat(e) {
 function setTipeCatatat(tipe) {
   tipeCatatat = tipe;
   document.querySelectorAll('.toggle-btn').forEach(b => b.classList.toggle('active', b.dataset.type === tipe));
-  el('btn-catat-submit').innerHTML = '<i data-lucide="check-circle"></i> Catat ' + tipe;
+  const icon = tipe === 'masuk' ? 'arrow-down-to-line' : 'arrow-up-from-line';
+  el('btn-catat-submit').innerHTML = `<i data-lucide="${icon}"></i> Catat ${tipe}`;
   if (window.lucide) window.lucide.createIcons();
   el('catat-error').style.display = 'none';
   updateLabelJumlah();
@@ -197,7 +198,8 @@ function setTipeCatatat(tipe) {
 
 function updateLabelJumlah() {
   const b = daftarBahan.find(x => x._id === el('catat-bahan').value);
-  el('catat-jumlah-label').textContent = `Jumlah ${tipeCatatat}${b ? ` (${b.satuan})` : ''}`;
+  el('catat-jumlah-label').innerHTML = `<i data-lucide="hash"></i> Jumlah ${tipeCatatat}${b ? ` (${b.satuan})` : ''}`;
+  if (window.lucide) window.lucide.createIcons();
 }
 
 async function resetData() {
