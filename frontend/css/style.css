@@ -107,8 +107,8 @@ table{border-collapse:collapse;width:100%}
   border-color:var(--green)
 }
 .user-tag i[data-lucide]{
-  width:15px;
-  height:15px;
+  width:13px;
+  height:13px;
   color:var(--green-t)
 }
 .btn-logout-icon{
@@ -128,8 +128,8 @@ table{border-collapse:collapse;width:100%}
   transform:scale(1.1)
 }
 .btn-logout-icon i[data-lucide]{
-  width:16px;
-  height:16px;
+  width:14px;
+  height:14px;
   color:currentColor
 }
 .theme-toggle{background:var(--bg-input);color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:.4rem .7rem;font-size:.78rem;font-weight:600;white-space:nowrap;transition:background .15s,border-color .15s;display:inline-flex;align-items:center;gap:.35rem}
@@ -215,9 +215,6 @@ table{border-collapse:collapse;width:100%}
 
 .empty-text{text-align:center;color:var(--dim);padding:1.5rem 0;font-size:.85rem}
 
-.reset-link{display:inline-block;font-size:.8rem;color:var(--dim);font-style:italic;margin-top:.25rem}
-.reset-link:hover{color:var(--green-t);text-decoration:underline}
-
 .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:#fff;padding:.65rem 1.3rem;border-radius:var(--radius);font-size:.85rem;font-weight:500;opacity:0;transition:transform .3s,opacity .3s;z-index:200;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.t-red{background:var(--red)}
@@ -244,13 +241,13 @@ table{border-collapse:collapse;width:100%}
 }
 
 i[data-lucide]{display:inline-block;vertical-align:middle;width:14px;height:14px;stroke-width:2;flex-shrink:0}
-.tab-btn i[data-lucide]{width:13px;height:13px}
-.toggle-btn i[data-lucide]{width:13px;height:13px}
-.topbar-title i[data-lucide]{width:18px;height:18px;margin-right:2px}
-.btn i[data-lucide]{width:14px;height:14px}
-.btn-icon i[data-lucide]{width:14px;height:14px}
-.btn-catat i[data-lucide]{width:13px;height:13px}
-.field label i[data-lucide]{width:13px;height:13px;display:inline-flex;align-items:center;margin-right:3px}
+.tab-btn i[data-lucide]{width:12px;height:12px}
+.toggle-btn i[data-lucide]{width:12px;height:12px}
+.topbar-title i[data-lucide]{width:17px;height:17px;margin-right:2px}
+.btn i[data-lucide]{width:13px;height:13px}
+.btn-icon i[data-lucide]{width:13px;height:13px}
+.btn-catat i[data-lucide]{width:12px;height:12px}
+.field label i[data-lucide]{width:12px;height:12px;display:inline-flex;align-items:center;margin-right:3px}
 .login-logo{display:flex;justify-content:center;margin-bottom:.75rem}
 .login-logo i[data-lucide]{width:56px;height:56px;color:var(--green);stroke-width:1.5}
-.summary i[data-lucide]{width:14px;height:14px;color:var(--dim);display:inline-flex;align-items:center}
+.summary i[data-lucide]{width:13px;height:13px;color:var(--dim);display:inline-flex;align-items:center}
