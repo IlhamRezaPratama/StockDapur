@@ -203,16 +203,6 @@ function updateLabelJumlah() {
   if (window.lucide) window.lucide.createIcons();
 }
 
-async function resetData() {
-  riwayat      = [];
-  idSedangEdit = null;
-  resetFormBahan();
-  const data = await getBahanApi();
-  if (data.ok) daftarBahan = data.bahan;
-  toast('Data berhasil dimuat ulang');
-  render();
-}
-
 document.addEventListener('DOMContentLoaded', async () => {
   setTheme(localStorage.getItem('stockdapur-tema') === 'dark' ? 'dark' : 'light');
 
@@ -233,6 +223,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   el('confirm-yes').addEventListener('click', hapusBahan);
   el('confirm-no').addEventListener('click', () => { el('confirm-overlay').style.display = 'none'; idAkanHapus = null; });
   el('confirm-overlay').addEventListener('click', e => { if (e.target === el('confirm-overlay')) { el('confirm-overlay').style.display = 'none'; idAkanHapus = null; } });
-  el('reset-rak').addEventListener('click', e => { e.preventDefault(); resetData(); });
-  el('reset-jurnal').addEventListener('click', e => { e.preventDefault(); resetData(); });
 });
